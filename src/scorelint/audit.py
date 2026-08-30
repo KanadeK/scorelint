@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from math import isfinite
 from typing import Literal
 
 from scorelint.geometry import BoundingBox, Point, PolygonMetrics, analyze_polygon, polygons_overlap
@@ -21,10 +22,15 @@ class Thresholds:
     def __post_init__(self) -> None:
         for name in ("tip_angle_deg", "concave_opening_deg"):
             value = getattr(self, name)
+            if not isfinite(value):
+                raise ValueError(f"{name} must be finite")
             if not 0 < value < 180:
                 raise ValueError(f"{name} must be greater than 0 and less than 180")
         for name in ("min_separation_mm", "min_area_mm2"):
-            if getattr(self, name) <= 0:
+            value = getattr(self, name)
+            if not isfinite(value):
+                raise ValueError(f"{name} must be finite")
+            if value <= 0:
                 raise ValueError(f"{name} must be greater than 0")
 
 

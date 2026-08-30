@@ -62,7 +62,10 @@ class Matrix:
 
     @property
     def maximum_scale(self) -> float:
-        return max(math.hypot(self.a, self.b), math.hypot(self.c, self.d))
+        squared_sum = self.a**2 + self.b**2 + self.c**2 + self.d**2
+        squared_determinant = (self.a * self.d - self.b * self.c) ** 2
+        discriminant = max(0.0, squared_sum**2 - 4 * squared_determinant)
+        return math.sqrt((squared_sum + math.sqrt(discriminant)) / 2)
 
 
 @dataclass(frozen=True, slots=True)
@@ -88,7 +91,10 @@ def _numbers(value: str, *, context: str) -> list[float]:
     remainder = re.sub(NUMBER, "", value)
     if remainder.replace(",", " ").strip():
         raise SvgInputError(f"invalid numeric list in {context}")
-    return [float(token) for token in tokens]
+    result = [float(token) for token in tokens]
+    if not all(math.isfinite(number) for number in result):
+        raise SvgInputError(f"numbers in {context} must be finite")
+    return result
 
 
 def _translation(x: float, y: float = 0.0) -> Matrix:
@@ -148,6 +154,8 @@ def _parse_length(value: str | None, *, field: str) -> tuple[float, str]:
     if match is None:
         raise SvgInputError(f"unsupported SVG {field}: {value!r}")
     magnitude = float(match.group(1))
+    if not math.isfinite(magnitude):
+        raise SvgInputError(f"SVG {field} must be finite")
     unit = match.group(2)
     if magnitude <= 0:
         raise SvgInputError(f"SVG {field} must be positive")
@@ -212,6 +220,8 @@ def _root_geometry(
 ) -> tuple[Matrix, float, float, str]:
     box = _viewbox(root)
     if scale_mm_per_unit is not None:
+        if not math.isfinite(scale_mm_per_unit):
+            raise SvgInputError("--scale-mm-per-unit must be finite")
         if scale_mm_per_unit <= 0:
             raise SvgInputError("--scale-mm-per-unit must be positive")
         if box is not None:
@@ -461,6 +471,8 @@ def _path_points(data: str, matrix: Matrix, tolerance: float) -> tuple[Point, ..
         ):
             raise SvgInputError("invalid path data: missing command parameters")
         result = [float(token) for token in tokens[index : index + count]]
+        if not all(math.isfinite(number) for number in result):
+            raise SvgInputError("path numbers must be finite")
         index += count
         return result
 
@@ -691,6 +703,8 @@ def parse_svg_text(
     flatness_mm: float = 0.25,
     scale_mm_per_unit: float | None = None,
 ) -> SvgDocument:
+    if not math.isfinite(flatness_mm):
+        raise SvgInputError("flatness must be finite")
     if flatness_mm <= 0:
         raise SvgInputError("flatness must be positive")
     if len(source.encode("utf-8")) > MAX_INPUT_BYTES:

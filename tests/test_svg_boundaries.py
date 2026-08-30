@@ -26,6 +26,12 @@ def test_all_transform_forms_have_explicit_matrix_semantics() -> None:
     assert parse_transform(None).apply(Point(2, 3)) == Point(2, 3)
 
 
+def test_transform_maximum_scale_is_conservative_under_shear() -> None:
+    matrix = parse_transform("matrix(1 0 1 1 0 0)")
+
+    assert matrix.maximum_scale == pytest.approx((1 + math.sqrt(5)) / 2)
+
+
 @pytest.mark.parametrize(
     ("transform", "message"),
     [
@@ -151,3 +157,24 @@ def test_read_svg_rejects_oversized_file_before_decoding(tmp_path: Path) -> None
 
     with pytest.raises(SvgInputError, match="10 MiB limit"):
         read_svg(source)
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        wrapped('<rect width="1e999" height="2"/>'),
+        wrapped('<path d="M 0 0 L 1e999 0 L 0 2 Z"/>'),
+    ],
+)
+def test_non_finite_svg_numbers_are_rejected(source: str) -> None:
+    with pytest.raises(SvgInputError, match="finite"):
+        parse_svg_text(source)
+
+
+@pytest.mark.parametrize(
+    ("keyword", "value"),
+    [("flatness_mm", float("nan")), ("scale_mm_per_unit", float("inf"))],
+)
+def test_non_finite_parser_configuration_is_rejected(keyword: str, value: float) -> None:
+    with pytest.raises(SvgInputError, match="finite"):
+        parse_svg_text(wrapped('<rect width="2" height="2"/>'), **{keyword: value})

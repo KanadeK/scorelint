@@ -117,6 +117,15 @@ def test_polygon_overlap_requires_shared_area_not_shared_edge() -> None:
     assert polygons_overlap(base, contained) is True
 
 
+def test_polygon_overlap_detects_area_between_collinear_edges() -> None:
+    base = polygon((0, 0), (10, 0), (10, 10), (0, 10))
+    shifted = polygon((5, 0), (15, 0), (15, 10), (5, 10))
+    adjacent = polygon((10, 0), (20, 0), (20, 10), (10, 10))
+
+    assert polygons_overlap(base, shifted) is True
+    assert polygons_overlap(base, adjacent) is False
+
+
 def test_repeated_closing_vertex_is_normalized() -> None:
     closed = polygon((0, 0), (10, 0), (10, 10), (0, 10), (0, 0))
 

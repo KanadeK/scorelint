@@ -301,6 +301,8 @@ def point_in_polygon(
 def polygons_overlap(first: tuple[Point, ...], second: tuple[Point, ...]) -> bool:
     left = _normalize_points(first)
     right = _normalize_points(second)
+    left_orientation = 1.0 if _signed_area(left) >= 0 else -1.0
+    right_orientation = 1.0 if _signed_area(right) >= 0 else -1.0
     for left_index, left_start in enumerate(left):
         left_end = left[(left_index + 1) % len(left)]
         for right_index, right_start in enumerate(right):
@@ -308,6 +310,17 @@ def polygons_overlap(first: tuple[Point, ...], second: tuple[Point, ...]) -> boo
             contact = segment_intersection(left_start, left_end, right_start, right_end)
             if contact is not None and contact.kind == "proper":
                 return True
+            if contact is not None and contact.kind == "overlap":
+                left_normal = Point(
+                    -(left_end.y - left_start.y) * left_orientation,
+                    (left_end.x - left_start.x) * left_orientation,
+                )
+                right_normal = Point(
+                    -(right_end.y - right_start.y) * right_orientation,
+                    (right_end.x - right_start.x) * right_orientation,
+                )
+                if left_normal.x * right_normal.x + left_normal.y * right_normal.y > EPSILON:
+                    return True
     if any(point_in_polygon(point, right) == "inside" for point in left):
         return True
     if any(point_in_polygon(point, left) == "inside" for point in right):

@@ -150,6 +150,8 @@ def test_findings_have_stable_code_piece_and_location_order() -> None:
         ("concave_opening_deg", 181),
         ("min_separation_mm", 0),
         ("min_area_mm2", -1),
+        ("min_area_mm2", float("nan")),
+        ("min_separation_mm", float("inf")),
     ],
 )
 def test_thresholds_reject_invalid_configuration(keyword: str, value: float) -> None:
