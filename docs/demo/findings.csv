@@ -1,0 +1,10 @@
+code,level,piece_ids,message,measured,threshold,unit,x_mm,y_mm,edge_indices
+SL200,warning,sharp-tip,sharp-tip: 5.711 deg internal tip is below 35 deg,5.71059,35,deg,5,5,
+SL200,warning,sharp-tip,sharp-tip: 5.711 deg internal tip is below 35 deg,5.71059,35,deg,45,5,
+SL201,warning,tight-notch,tight-notch: 53.130 deg concave opening is below 75 deg,53.1301,75,deg,75,33,
+SL202,warning,piece-004,piece-004: 2.000 mm non-adjacent edge separation is below 3 mm,2,3,mm,110,6,0|2
+SL202,warning,thin-strip,thin-strip: 2.000 mm non-adjacent edge separation is below 3 mm,2,3,mm,5,51,0|2
+SL202,warning,tight-notch,tight-notch: 1.789 mm non-adjacent edge separation is below 3 mm,1.78885,3,mm,75.2,34.6,2|4
+SL203,warning,piece-004,piece-004: 4.000 mm2 area is below 50 mm2,4,50,mm2,,,
+SL203,warning,sharp-tip,sharp-tip: 40.000 mm2 area is below 50 mm2,40,50,mm2,,,
+SL204,notice,piece-004,piece-004: generated ID; add an explicit SVG id for stable tracking,,,,,,

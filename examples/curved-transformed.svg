@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160mm" height="100mm" viewBox="0 0 160 100">
+  <title>ScoreLint curve and transform example</title>
+  <g transform="translate(10 10) scale(1.25)">
+    <path id="arched-pane" d="M 0 45 C 10 0 50 0 60 45 L 60 60 H 0 Z"/>
+  </g>
+  <ellipse id="roundel" cx="125" cy="48" rx="20" ry="28"/>
+</svg>

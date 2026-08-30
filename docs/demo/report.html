@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ScoreLint audit - risky-panel.svg</title>
+<style>
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #17202a; }
+body { max-width: 72rem; margin: 0 auto; padding: 2rem; background: #f7f4ed; }
+h1 { margin-bottom: .25rem; }
+.summary { display: flex; gap: 1rem; flex-wrap: wrap; }
+.summary strong { padding: .4rem .7rem; background: #fff; border: 1px solid #d6d0c4; }
+.canvas { margin: 1.5rem 0; padding: 1rem; background: #fff; border: 1px solid #d6d0c4; }
+.canvas svg { display: block; width: 100%; height: auto; max-height: 34rem; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { padding: .65rem; text-align: left; vertical-align: top; border: 1px solid #d6d0c4; }
+caption { text-align: left; font-weight: 700; margin-bottom: .5rem; }
+</style>
+</head>
+<body>
+<main>
+<h1>ScoreLint audit</h1>
+<p><code>risky-panel.svg</code> - 4 pieces</p>
+<p><strong>Cut-risk indicators require human review; this report does not certify cuttability.</strong></p>
+<div class="summary">
+<strong>0 errors</strong>
+<strong>8 warnings</strong>
+<strong>1 notices</strong>
+</div>
+<div class="canvas"><svg xmlns="http://www.w3.org/2000/svg" width="140mm" height="80mm" viewBox="0 0 140 80" role="img" aria-label="ScoreLint audit"><title>ScoreLint audit: risky-panel.svg</title><style>.piece{fill:#d8e7f0;stroke:#243447;stroke-width:.35}.piece-risk{fill:#ffd9d2;stroke:#922b21}.marker{fill:#c0392b;stroke:#fff;stroke-width:.3}.label{font:2.5px sans-serif;fill:#17202a}</style><polygon class="piece-risk" points="5,5 45,5 25,7" data-piece-id="sharp-tip" data-findings="SL200 SL203" vector-effect="non-scaling-stroke" /><polygon class="piece-risk" points="55,5 95,5 95,35 76,35 75,33 74,35 55,35" data-piece-id="tight-notch" data-findings="SL201 SL202" vector-effect="non-scaling-stroke" /><polygon class="piece-risk" points="5,50 50,50 50,52 5,52" data-piece-id="thin-strip" data-findings="SL202" vector-effect="non-scaling-stroke" /><polygon class="piece-risk" points="110,5 112,5 112,7 110,7" data-piece-id="piece-004" data-findings="SL202 SL203 SL204" vector-effect="non-scaling-stroke" /><circle class="marker" cx="5" cy="5" r="1.2" data-code="SL200" /><text class="label" x="6.6" y="3.8">SL200</text><circle class="marker" cx="45" cy="5" r="1.2" data-code="SL200" /><text class="label" x="46.6" y="3.8">SL200</text><circle class="marker" cx="75" cy="33" r="1.2" data-code="SL201" /><text class="label" x="76.6" y="31.8">SL201</text><circle class="marker" cx="110" cy="6" r="1.2" data-code="SL202" /><text class="label" x="111.6" y="4.8">SL202</text><circle class="marker" cx="5" cy="51" r="1.2" data-code="SL202" /><text class="label" x="6.6" y="49.8">SL202</text><circle class="marker" cx="75.2" cy="34.6" r="1.2" data-code="SL202" /><text class="label" x="76.8" y="33.4">SL202</text></svg>
+</div>
+<table>
+<caption>Measured findings</caption>
+<thead><tr><th>Code</th><th>Level</th><th>Piece</th><th>Evidence</th></tr></thead>
+<tbody><tr><td><code>SL200</code></td><td>warning</td><td>sharp-tip</td><td>sharp-tip: 5.711 deg internal tip is below 35 deg</td></tr>
+<tr><td><code>SL200</code></td><td>warning</td><td>sharp-tip</td><td>sharp-tip: 5.711 deg internal tip is below 35 deg</td></tr>
+<tr><td><code>SL201</code></td><td>warning</td><td>tight-notch</td><td>tight-notch: 53.130 deg concave opening is below 75 deg</td></tr>
+<tr><td><code>SL202</code></td><td>warning</td><td>piece-004</td><td>piece-004: 2.000 mm non-adjacent edge separation is below 3 mm</td></tr>
+<tr><td><code>SL202</code></td><td>warning</td><td>thin-strip</td><td>thin-strip: 2.000 mm non-adjacent edge separation is below 3 mm</td></tr>
+<tr><td><code>SL202</code></td><td>warning</td><td>tight-notch</td><td>tight-notch: 1.789 mm non-adjacent edge separation is below 3 mm</td></tr>
+<tr><td><code>SL203</code></td><td>warning</td><td>piece-004</td><td>piece-004: 4.000 mm2 area is below 50 mm2</td></tr>
+<tr><td><code>SL203</code></td><td>warning</td><td>sharp-tip</td><td>sharp-tip: 40.000 mm2 area is below 50 mm2</td></tr>
+<tr><td><code>SL204</code></td><td>notice</td><td>piece-004</td><td>piece-004: generated ID; add an explicit SVG id for stable tracking</td></tr></tbody>
+</table>
+</main>
+</body>
+</html>

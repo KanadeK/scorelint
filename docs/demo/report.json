@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0",
+  "tool": {
+    "name": "scorelint",
+    "version": "0.1.0"
+  },
+  "source": {
+    "name": "risky-panel.svg",
+    "width_mm": 140.0,
+    "height_mm": 80.0,
+    "scale_description": "viewBox to 140x80 mm viewport",
+    "flatness_mm": 0.25
+  },
+  "thresholds": {
+    "tip_angle_deg": 35.0,
+    "concave_opening_deg": 75.0,
+    "min_separation_mm": 3.0,
+    "min_area_mm2": 50.0
+  },
+  "summary": {
+    "errors": 0,
+    "warnings": 8,
+    "notices": 1,
+    "pieces": 4
+  },
+  "pieces": [
+    {
+      "piece_id": "sharp-tip",
+      "source_tag": "path",
+      "valid": true,
+      "point_count": 3,
+      "area_mm2": 40.0,
+      "perimeter_mm": 80.19950248448356,
+      "bbox_mm": {
+        "min_x": 5.0,
+        "min_y": 5.0,
+        "max_x": 45.0,
+        "max_y": 7.0
+      },
+      "minimum_separation_mm": null
+    },
+    {
+      "piece_id": "tight-notch",
+      "source_tag": "path",
+      "valid": true,
+      "point_count": 7,
+      "area_mm2": 1198.0,
+      "perimeter_mm": 142.47213595499957,
+      "bbox_mm": {
+        "min_x": 55.0,
+        "min_y": 5.0,
+        "max_x": 95.0,
+        "max_y": 35.0
+      },
+      "minimum_separation_mm": 1.7888543819998255
+    },
+    {
+      "piece_id": "thin-strip",
+      "source_tag": "rect",
+      "valid": true,
+      "point_count": 4,
+      "area_mm2": 90.0,
+      "perimeter_mm": 94.0,
+      "bbox_mm": {
+        "min_x": 5.0,
+        "min_y": 50.0,
+        "max_x": 50.0,
+        "max_y": 52.0
+      },
+      "minimum_separation_mm": 2.0
+    },
+    {
+      "piece_id": "piece-004",
+      "source_tag": "rect",
+      "valid": true,
+      "point_count": 4,
+      "area_mm2": 4.0,
+      "perimeter_mm": 8.0,
+      "bbox_mm": {
+        "min_x": 110.0,
+        "min_y": 5.0,
+        "max_x": 112.0,
+        "max_y": 7.0
+      },
+      "minimum_separation_mm": 2.0
+    }
+  ],
+  "findings": [
+    {
+      "code": "SL200",
+      "level": "warning",
+      "message": "sharp-tip: 5.711 deg internal tip is below 35 deg",
+      "piece_ids": [
+        "sharp-tip"
+      ],
+      "location": {
+        "x": 5.0,
+        "y": 5.0
+      },
+      "measured": 5.710593137499633,
+      "threshold": 35.0,
+      "unit": "deg",
+      "edge_indices": []
+    },
+    {
+      "code": "SL200",
+      "level": "warning",
+      "message": "sharp-tip: 5.711 deg internal tip is below 35 deg",
+      "piece_ids": [
+        "sharp-tip"
+      ],
+      "location": {
+        "x": 45.0,
+        "y": 5.0
+      },
+      "measured": 5.710593137499633,
+      "threshold": 35.0,
+      "unit": "deg",
+      "edge_indices": []
+    },
+    {
+      "code": "SL201",
+      "level": "warning",
+      "message": "tight-notch: 53.130 deg concave opening is below 75 deg",
+      "piece_ids": [
+        "tight-notch"
+      ],
+      "location": {
+        "x": 75.0,
+        "y": 33.0
+      },
+      "measured": 53.13010235415601,
+      "threshold": 75.0,
+      "unit": "deg",
+      "edge_indices": []
+    },
+    {
+      "code": "SL202",
+      "level": "warning",
+      "message": "piece-004: 2.000 mm non-adjacent edge separation is below 3 mm",
+      "piece_ids": [
+        "piece-004"
+      ],
+      "location": {
+        "x": 110.0,
+        "y": 6.0
+      },
+      "measured": 2.0,
+      "threshold": 3.0,
+      "unit": "mm",
+      "edge_indices": [
+        0,
+        2
+      ]
+    },
+    {
+      "code": "SL202",
+      "level": "warning",
+      "message": "thin-strip: 2.000 mm non-adjacent edge separation is below 3 mm",
+      "piece_ids": [
+        "thin-strip"
+      ],
+      "location": {
+        "x": 5.0,
+        "y": 51.0
+      },
+      "measured": 2.0,
+      "threshold": 3.0,
+      "unit": "mm",
+      "edge_indices": [
+        0,
+        2
+      ]
+    },
+    {
+      "code": "SL202",
+      "level": "warning",
+      "message": "tight-notch: 1.789 mm non-adjacent edge separation is below 3 mm",
+      "piece_ids": [
+        "tight-notch"
+      ],
+      "location": {
+        "x": 75.2,
+        "y": 34.6
+      },
+      "measured": 1.7888543819998255,
+      "threshold": 3.0,
+      "unit": "mm",
+      "edge_indices": [
+        2,
+        4
+      ]
+    },
+    {
+      "code": "SL203",
+      "level": "warning",
+      "message": "piece-004: 4.000 mm2 area is below 50 mm2",
+      "piece_ids": [
+        "piece-004"
+      ],
+      "location": null,
+      "measured": 4.0,
+      "threshold": 50.0,
+      "unit": "mm2",
+      "edge_indices": []
+    },
+    {
+      "code": "SL203",
+      "level": "warning",
+      "message": "sharp-tip: 40.000 mm2 area is below 50 mm2",
+      "piece_ids": [
+        "sharp-tip"
+      ],
+      "location": null,
+      "measured": 40.0,
+      "threshold": 50.0,
+      "unit": "mm2",
+      "edge_indices": []
+    },
+    {
+      "code": "SL204",
+      "level": "notice",
+      "message": "piece-004: generated ID; add an explicit SVG id for stable tracking",
+      "piece_ids": [
+        "piece-004"
+      ],
+      "location": null,
+      "measured": null,
+      "threshold": null,
+      "unit": null,
+      "edge_indices": []
+    }
+  ]
+}

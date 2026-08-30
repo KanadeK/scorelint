@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140mm" height="80mm" viewBox="0 0 140 80">
+  <title>ScoreLint measured risk example</title>
+  <path id="sharp-tip" d="M 5 5 L 45 5 L 25 7 Z"/>
+  <path id="tight-notch" d="M 55 5 H 95 V 35 H 76 L 75 33 L 74 35 H 55 Z"/>
+  <rect id="thin-strip" x="5" y="50" width="45" height="2"/>
+  <rect x="110" y="5" width="2" height="2"/>
+</svg>
