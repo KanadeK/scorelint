@@ -762,6 +762,8 @@ def read_svg(
     path: Path, *, flatness_mm: float = 0.25, scale_mm_per_unit: float | None = None
 ) -> SvgDocument:
     try:
+        if path.stat().st_size > MAX_INPUT_BYTES:
+            raise SvgInputError("SVG input exceeds the 10 MiB limit")
         source = path.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as error:
         raise SvgInputError(f"cannot read UTF-8 SVG {path.name}: {error}") from error

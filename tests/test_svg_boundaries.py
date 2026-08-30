@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from scorelint.geometry import Point
-from scorelint.svg import SvgInputError, parse_svg_text, parse_transform, read_svg
+from scorelint.svg import MAX_INPUT_BYTES, SvgInputError, parse_svg_text, parse_transform, read_svg
 
 
 def wrapped(
@@ -139,4 +139,15 @@ def test_read_svg_reports_invalid_utf8(tmp_path: Path) -> None:
     source.write_bytes(b"\xff\xfe")
 
     with pytest.raises(SvgInputError, match="cannot read UTF-8 SVG"):
+        read_svg(source)
+
+
+def test_read_svg_rejects_oversized_file_before_decoding(tmp_path: Path) -> None:
+    source = tmp_path / "oversized.svg"
+    with source.open("wb") as handle:
+        handle.write(b"\xff")
+        handle.seek(MAX_INPUT_BYTES)
+        handle.write(b"x")
+
+    with pytest.raises(SvgInputError, match="10 MiB limit"):
         read_svg(source)
