@@ -47,6 +47,7 @@ packages = ["src/scorelint"]
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-config --strict-markers --basetemp=.pytest-tmp"
+pythonpath = ["."]
 testpaths = ["tests"]
 
 [tool.coverage.run]

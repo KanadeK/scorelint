@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.12"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.11.20"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install locked development environment
+        run: uv sync --all-groups --locked
+
+      - name: Verify tag and run release gate
+        run: |
+          uv run --no-sync python scripts/verify_tag.py
+          uv run --no-sync python scripts/check.py
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME"
+          dist/scorelint-*.whl
+          dist/scorelint-*.tar.gz
+          dist/scorelint-*-examples.zip
+          dist/SHA256SUMS.txt
+          --verify-tag
+          --title "ScoreLint $GITHUB_REF_NAME"
+          --notes-file .github/release-notes-v0.1.0.md
