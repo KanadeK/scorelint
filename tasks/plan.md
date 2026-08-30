@@ -18,27 +18,27 @@ pieces into deterministic geometry evidence and human-review artifacts.
 
 ### Phase 1: Geometry foundation
 
-- [ ] Task 1: Define immutable domain records and tested polygon metrics.
-- [ ] Task 2: Parse supported SVG shapes, paths, transforms, and physical scale.
-- [ ] Task 3: Implement piece and cross-piece findings with stable codes.
+- [x] Task 1: Define immutable domain records and tested polygon metrics.
+- [x] Task 2: Parse supported SVG shapes, paths, transforms, and physical scale.
+- [x] Task 3: Implement piece and cross-piece findings with stable codes.
 
 ### Checkpoint: Core
 
-- [ ] Focused tests pass for clean, risky, transformed, curved, and invalid geometry.
+- [x] Focused tests pass for clean, risky, transformed, curved, and invalid geometry.
 
 ### Phase 2: Product slice
 
-- [ ] Task 4: Implement JSON/CSV/SVG/HTML renderers.
-- [ ] Task 5: Implement CLI, exit codes, boundaries, and deterministic examples.
+- [x] Task 4: Implement JSON/CSV/SVG/HTML renderers.
+- [x] Task 5: Implement CLI, exit codes, boundaries, and deterministic examples.
 
 ### Checkpoint: End to end
 
-- [ ] CLI creates four artifacts from a clean example and returns `1` for risk findings.
+- [x] CLI creates four artifacts from a clean example and returns `1` for risk findings.
 
 ### Phase 3: Ship
 
-- [ ] Task 6: Complete README, rule reference, contributor guidance, and repair flow.
-- [ ] Task 7: Add single local release gate, packaging checks, and cross-platform CI.
+- [x] Task 6: Complete README, rule reference, contributor guidance, and repair flow.
+- [x] Task 7: Add single local release gate, packaging checks, and cross-platform CI.
 - [ ] Task 8: Commit, publish, verify Release assets, and perform fresh-install acceptance.
 
 ## Risks and Mitigations
