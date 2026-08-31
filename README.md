@@ -32,25 +32,18 @@ and deliberately narrow differentiation claim.
 
 ## Quick start
 
-Run without installing permanently:
-
-```console
-uvx scorelint audit pattern.svg --output scorelint-report
-```
-
-Or install with `pipx`:
-
-```console
-pipx install scorelint
-scorelint audit pattern.svg --output scorelint-report
-```
-
-Until the package is available from an index, install the wheel attached to the
+Install the wheel from the
 [latest GitHub Release](https://github.com/KanadeK/scorelint/releases/latest):
 
 ```console
-pipx install scorelint-0.1.0-py3-none-any.whl
+python -m pip install https://github.com/KanadeK/scorelint/releases/download/v0.1.0/scorelint-0.1.0-py3-none-any.whl
 scorelint audit pattern.svg --output scorelint-report
+```
+
+For an isolated command-line installation, `pipx` accepts the same wheel URL:
+
+```console
+pipx install https://github.com/KanadeK/scorelint/releases/download/v0.1.0/scorelint-0.1.0-py3-none-any.whl
 ```
 
 The command writes:
