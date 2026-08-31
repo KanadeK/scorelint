@@ -39,7 +39,7 @@ pieces into deterministic geometry evidence and human-review artifacts.
 
 - [x] Task 6: Complete README, rule reference, contributor guidance, and repair flow.
 - [x] Task 7: Add single local release gate, packaging checks, and cross-platform CI.
-- [ ] Task 8: Commit, publish, verify Release assets, and perform fresh-install acceptance.
+- [x] Task 8: Commit, publish, verify Release assets, and perform fresh-install acceptance.
 
 ## Risks and Mitigations
 

@@ -16,6 +16,6 @@
 - [x] Examples, docs, package, and CI
   - Acceptance: build/install/examples/full gate pass locally and remotely.
   - Verify: `uv run --no-sync python scripts/check.py`
-- [ ] Public release closure
+- [x] Public release closure
   - Acceptance: public repo, passing main/tag CI, annotated `v0.1.0`, Release assets,
     fresh-install acceptance, and Gmail notification.
